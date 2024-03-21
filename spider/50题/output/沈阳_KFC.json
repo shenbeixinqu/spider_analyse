@@ -1,0 +1,12 @@
+{"Table": [{"rowcount": 198}], "Table1":
+[
+  {"rownum": 1, "storeName": "长兴餐厅", "addressDetail": "长兴街2号", "pro": "Wi-Fi,店内参观,礼品卡", "provinceName": "辽宁省", "cityName": "沈阳市"},
+  {"rownum": 2, "storeName": "总统餐厅", "addressDetail": "和平北大街65号", "pro": "Wi-Fi,点唱机,礼品卡", "provinceName": "辽宁省", "cityName": "沈阳市"},
+  {"rownum": 3, "storeName": "北一路万达", "addressDetail": "北一中路1号", "pro": "点唱机,店内参观,礼品卡", "provinceName": "辽宁省", "cityName": "沈阳市"},
+  {"rownum": 4, "storeName": "北站站内", "addressDetail": "北站路102号", "pro": "Wi-Fi,礼品卡", "provinceName": "辽宁省", "cityName": "沈阳市"},
+  {"rownum": 5, "storeName": "皇姑乐购肯德基", "addressDetail": "（实验中学对面）黄河南大街78甲A华润万家一层", "pro": "Wi-Fi,礼品卡", "provinceName": "辽宁省", "cityName": "沈阳市"},
+  {"rownum": 6, "storeName": "正良", "addressDetail": "道义南大街28号（华润万家一层）", "pro": "Wi-Fi,点唱机,店内参观,礼品卡", "provinceName": "辽宁省", "cityName": "沈阳市"},
+  {"rownum": 7, "storeName": "星摩尔", "addressDetail": "北二中路6号星摩尔购物中心一楼", "pro": "Wi-Fi,店内参观,礼品卡", "provinceName": "辽宁省", "cityName": "沈阳市"},
+  {"rownum": 8, "storeName": "铁百", "addressDetail": "兴华南街16号", "pro": "24小时,Wi-Fi,礼品卡", "provinceName": "辽宁省", "cityName": "沈阳市"},
+  {"rownum": 9, "storeName": "南五", "addressDetail": "南京南街78号南五大润发一楼", "pro": "24小时,Wi-Fi,礼品卡", "provinceName": "辽宁省", "cityName": "沈阳市"},
+  {"rownum": 10, "storeName": "钟楼", "addressDetail": "中街路190号", "pro": "Wi-Fi,礼品卡", "provinceName": "辽宁省", "cityName": "沈阳市"}]}
