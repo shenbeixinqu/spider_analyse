@@ -49,7 +49,7 @@ def get_data(p):
         "order": "102",
         "ordertype": "desc"
     }
-    response = requests.post(url, headers=headers, data=data)
+    response = requests.post(url, headers=headers, data=data, cookies=cookies)
     datas = response.json()['data']['table1']
     results = []
     for data in datas:
