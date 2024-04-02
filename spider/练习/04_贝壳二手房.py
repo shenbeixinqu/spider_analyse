@@ -1,5 +1,6 @@
 import requests
 import csv
+import time
 from fake_useragent import UserAgent
 from lxml import etree
 
@@ -16,7 +17,7 @@ def user_agent():
     return user_agent
 
 
-def get_data():
+def get_data(p):
     headers = {
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
         "Accept-Language": "zh-CN,zh;q=0.9",
@@ -43,11 +44,13 @@ def get_data():
         "Hm_lpvt_9152f8221cb6243a53c83b956842be8a": "1711961750",
         "srcid": "eyJ0Ijoie1wiZGF0YVwiOlwiZDQwNjkyNTYyYWJhM2NmZTkxZmViZjBlMzhiMjRjN2IwNjc4YjdkZTc4ZDNkZWY4NWI3ZGM5MjA1ZjQ4MmQ1NTkxNWQ5ZDNlMTYyNjJlZjBlOTg2OWMxMWNkZDFhODkxYzMxOTBlOTkwNTBiYzYwZTBmZWE3MDkxYjc3YmM3MDg3YThmZjRiMjU1OTU2YTg3NDRiZmQ5ZDE0ODA3ZDc3ZGU5ZWQ3M2UzYmZiZTQyNDNjNDZkNTRlZmUzY2NkNDlhMWMyMjMyZDlmMjU0NmM2ZjY5NTllOWQ0ODBkMzlmNzliYmM0Y2ZhOTA1OWNjMDNjNTY0MzM1OWFlOGVkMmUyYlwiLFwia2V5X2lkXCI6XCIxXCIsXCJzaWduXCI6XCJjMTEzZWVkYVwifSIsInIiOiJodHRwczovL3N5LmtlLmNvbS9lcnNob3VmYW5nLyIsIm9zIjoid2ViIiwidiI6IjAuMSJ9"
     }
-    url = "https://sy.ke.com/ershoufang/"
+    url = "https://sy.ke.com/ershoufang/pg{}/".format(p)
+    print('url', url)
     response = requests.get(url, headers=headers, cookies=cookies)
     content = response.text
     html = etree.HTML(content)
     lis = html.xpath('//ul[@class="sellListContent"]//li[@class="clear"]')
+    results = []
     for li in lis:
         # 标题
         name = li.xpath('.//div[@class="title"]/a/text()')[0].strip()
@@ -56,13 +59,31 @@ def get_data():
         # 小区信息
         info = li.xpath('.//div[@class="houseInfo"]/text()')[0].strip()
         # 上传时间
-        follow = li.xpath('.//div[@class="followInfo"/text()')[0].strip()
+        follow = li.xpath('.//div[@class="followInfo"]/text()')[0].strip()
         # 总价
         total = li.xpath('.//div[@class="priceInfo"]/div[1]/span/text()')[0].strip()
         # 单价
-        unit = li.xpath('.//div[@class="priceInfo"]/div[2]/span/text()')[0].replace('元/平', '')
+        unit = li.xpath('.//div[@class="priceInfo"]/div[2]/span/text()')[0].replace('元/平', '').strip()
+        results.append([name, position, info, follow, total, unit])
+    print('写入信息:\n', results)
+    write_csv(results)
+
+
+def write_csv(data):
+    with open('./data/04_data.csv', 'a+', encoding='utf-8', newline='') as f:
+        writer = csv.writer(f)
+        for _ in data:
+            writer.writerow(_)
+
+
+def main():
+    for p in range(1, 30):
+        print(f'>>>正在获取:{p}页')
+        get_data(p)
+        time.sleep(5)
 
 
 if __name__ == '__main__':
-    get_data()
-
+    create_csv_header()
+    main()
+    # get_data(2)
